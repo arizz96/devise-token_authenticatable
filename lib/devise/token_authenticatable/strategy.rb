@@ -37,6 +37,7 @@ module Devise
         return fail(:invalid_token) unless resource
 
         if validate(resource)
+          env["devise.skip_trackable"] = true
           resource.after_token_authentication
           success!(resource)
         end
